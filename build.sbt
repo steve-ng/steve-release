@@ -1,5 +1,6 @@
 import Dependencies._
 import CommonSettings._
+import sbtrelease.ReleasePlugin.autoImport.ReleaseKeys.{commandLineNextVersion, commandLineReleaseVersion, useDefaults, versions}
 
 ThisBuild / name := "steve-release"
 ThisBuild / organization := "com.steve"
@@ -34,7 +35,12 @@ lazy val flattener = project
 
 import ReleaseTransformations._
 
+lazy val useDefaultReleaseOption = { st: State =>
+  st.put(useDefaults, true)
+}
+
 releaseProcess := Seq[ReleaseStep](
+  useDefaultReleaseOption,
   checkSnapshotDependencies,              // : ReleaseStep
   inquireVersions,                        // : ReleaseStep
   runClean,                               // : ReleaseStep
