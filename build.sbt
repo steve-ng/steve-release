@@ -1,6 +1,6 @@
 import Dependencies._
 import CommonSettings._
-import sbtrelease.ReleasePlugin.autoImport.ReleaseKeys.{commandLineNextVersion, commandLineReleaseVersion, useDefaults, versions}
+import sbtrelease.ReleasePlugin.autoImport.ReleaseKeys.{useDefaults}
 
 ThisBuild / name := "steve-release"
 ThisBuild / organization := "com.steve"
