@@ -9,6 +9,13 @@ ThisBuild / scalaVersion := "2.11.12"
 
 val compileAndTestDependency = "compile->compile;test->test"
 
+artifact in (Compile, assembly) := {
+  val art = (artifact in (Compile, assembly)).value
+  art.withClassifier(Some("assembly"))
+}
+
+addArtifact(artifact in (Compile, assembly), assembly)
+
 lazy val common = project
   .settings(
     name := "common",
@@ -28,16 +35,16 @@ lazy val flattener = project
 import ReleaseTransformations._
 
 releaseProcess := Seq[ReleaseStep](
-  checkSnapshotDependencies,              // : ReleaseStep
-  inquireVersions,                        // : ReleaseStep
-  runClean,                               // : ReleaseStep
-  runTest,                                // : ReleaseStep
-  releaseStepTask(assembly),
-  setReleaseVersion,                      // : ReleaseStep
-  commitReleaseVersion,                   // : ReleaseStep, performs the initial git checks
-  tagRelease,                             // : ReleaseStep
- // publishArtifacts,                       // : ReleaseStep, checks whether `publishTo` is properly set up
-  setNextVersion,                         // : ReleaseStep
-  commitNextVersion,                      // : ReleaseStep
-  pushChanges                             // : ReleaseStep, also checks that an upstream branch is properly configured
+//  checkSnapshotDependencies,              // : ReleaseStep
+//  inquireVersions,                        // : ReleaseStep
+//  runClean,                               // : ReleaseStep
+//  runTest,                                // : ReleaseStep
+  releaseStepTask(assembly)
+//  setReleaseVersion,                      // : ReleaseStep
+//  commitReleaseVersion,                   // : ReleaseStep, performs the initial git checks
+//  tagRelease,                             // : ReleaseStep
+// // publishArtifacts,                       // : ReleaseStep, checks whether `publishTo` is properly set up
+//  setNextVersion,                         // : ReleaseStep
+//  commitNextVersion,                      // : ReleaseStep
+//  pushChanges                             // : ReleaseStep, also checks that an upstream branch is properly configured
 )
