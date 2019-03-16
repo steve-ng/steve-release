@@ -39,7 +39,7 @@ releaseProcess := Seq[ReleaseStep](
 //  inquireVersions,                        // : ReleaseStep
 //  runClean,                               // : ReleaseStep
 //  runTest,                                // : ReleaseStep
-  releaseStepCommand("clean assembly")
+  releaseStepCommand("assembly")
 //  setReleaseVersion,                      // : ReleaseStep
 //  commitReleaseVersion,                   // : ReleaseStep, performs the initial git checks
 //  tagRelease,                             // : ReleaseStep
