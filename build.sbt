@@ -1,8 +1,8 @@
 import Dependencies._
 import CommonSettings._
 
-ThisBuild / name := "tvlk-eci-data-pipeline"
-ThisBuild / organization := "com.phoenix"
+ThisBuild / name := "steve-release"
+ThisBuild / organization := "com.steve"
 ThisBuild / version := "0.1-SNAPSHOT"
 // https://spark.apache.org/docs/latest/ Spark 2.4 works with uses Scala 2.11
 ThisBuild / scalaVersion := "2.11.12"
@@ -35,16 +35,9 @@ lazy val flattener = project
 import ReleaseTransformations._
 
 releaseProcess := Seq[ReleaseStep](
-//  checkSnapshotDependencies,              // : ReleaseStep
-//  inquireVersions,                        // : ReleaseStep
-//  runClean,                               // : ReleaseStep
-//  runTest,                                // : ReleaseStep
+  checkSnapshotDependencies,              // : ReleaseStep
+  inquireVersions,                        // : ReleaseStep
+  runClean,                               // : ReleaseStep
+  setReleaseVersion,                      // : ReleaseStep
   releaseStepCommand("assembly")
-//  setReleaseVersion,                      // : ReleaseStep
-//  commitReleaseVersion,                   // : ReleaseStep, performs the initial git checks
-//  tagRelease,                             // : ReleaseStep
-// // publishArtifacts,                       // : ReleaseStep, checks whether `publishTo` is properly set up
-//  setNextVersion,                         // : ReleaseStep
-//  commitNextVersion,                      // : ReleaseStep
-//  pushChanges                             // : ReleaseStep, also checks that an upstream branch is properly configured
 )
