@@ -32,6 +32,7 @@ releaseProcess := Seq[ReleaseStep](
   inquireVersions,                        // : ReleaseStep
   runClean,                               // : ReleaseStep
   runTest,                                // : ReleaseStep
+  assemblyStep,
   setReleaseVersion,                      // : ReleaseStep
   commitReleaseVersion,                   // : ReleaseStep, performs the initial git checks
   tagRelease,                             // : ReleaseStep
@@ -40,3 +41,8 @@ releaseProcess := Seq[ReleaseStep](
   commitNextVersion,                      // : ReleaseStep
   pushChanges                             // : ReleaseStep, also checks that an upstream branch is properly configured
 )
+
+val assemblyStep = ReleaseStep(action = st => {
+  assembly
+  st
+})
